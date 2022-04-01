@@ -1,0 +1,52 @@
+server:
+  port: 9093
+
+
+
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          mdc:
+            client-id: fill-in
+            client-secret: fill-in
+            authorization-grant-type: authorization_code
+            redirect-uri: http://localhost:9093/login/oauth2/code/mdc
+        provider:
+          mdc:
+            authorization-uri: fill-in
+            token-uri: fill-in
+            user-info-uri: fill-in
+            user-name-attribute: name
+
+
+
+  cloud:
+    gateway:
+      routes:
+      - id: ssa-resources
+        uri: https://api.publicapis.org
+        predicates:
+        - Path=/entries
+        filters:
+        - TokenRelay=
+
+
+
+  redis:
+    host: fill-in
+    password: fill-in
+    port: 6380
+    database: 4
+    ssl: true
+
+  session:
+    store-type: redis
+
+logging:
+  level:
+    root: DEBUG
+    com.company: DEBUG
+    org.springframework.boot: DEBUG
+    org.springframework.security: DEBUG
