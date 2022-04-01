@@ -1,13 +1,17 @@
 # spring-session-oauth-gateway
 replicate issue for calls made to the gateway returning a 302 after reloading the application with active session in redis
 
+## Configuraton
+- Replace "fill-in" placeholders in application.yml with true values
+- You need a redis instance
+- You need an Oauth2 Server
+- You need to register the application with the Oauth2 Server
+
 ## Endpoints
 - https://localhost:9093/hello.html
 - https://localhost:9093/entries
 
-
 ## Reproducing Problem
-
 1. Start Application.
 2. User requests loading application in the browser: https://localhost:9093/hello.html
 3. Session is successfully created in Redis.
